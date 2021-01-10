@@ -26,6 +26,6 @@
 
 ## Lastly in ‘SearchTrainPresenterTests’ added few test 
 
-###### Newly developed tasks
+###### Newly implemented tasks
 - [x] Implemented the network adapter layer.
 - [x] Wrote test cases for interactor
