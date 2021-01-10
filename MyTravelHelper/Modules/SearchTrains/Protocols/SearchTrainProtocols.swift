@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ErrorMessages {
+enum ErrorMessages: Error {
     case noInternet
     case NoTrainsFound
     case NoTrainAvailbilityFromSource
@@ -37,6 +37,7 @@ protocol PresenterToRouterProtocol: class {
 
 protocol PresenterToInteractorProtocol: class {
     var presenter:InteractorToPresenterProtocol? {get set}
+    var networkClient: Client?{get set}
     func fetchallStations()
     func fetchTrainsFromSource(sourceCode:String,destinationCode:String)
     func saveStationToFav(_ station: StationTrain)

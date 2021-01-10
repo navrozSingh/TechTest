@@ -11,27 +11,21 @@ import XMLParsing
 //import Alamofire
 
 class SearchTrainInteractor: PresenterToInteractorProtocol {
+    var networkClient: Client?
     var _sourceStationCode = String()
     var _destinationStationCode = String()
     var presenter: InteractorToPresenterProtocol?
-
     func fetchallStations() {
-        URLSession.shared.perform(Station.request(),
-                                  decode: Stations.self) { (result) in
+        networkClient?.fetchallStations(resultHandler: { (result) in
             switch result {
-            case .failure(let error):
-                let error = error as NSError
-                switch error.code {
-                case -1009:
-                    self.presenter?.showErrorMessage(for: .noInternet)
-                    break
-                    //TODO: No Station found
-                default: break
-                }
             case .success(let station):
                 self.presenter?.stationListFetched(list: station.stationsList)
+                break
+            case .failure(let error):
+                self.presenter?.showErrorMessage(for: error)
+                break
             }
-        }
+        })
     }
     func fetchTrainsFromSource(sourceCode: String, destinationCode: String) {
         guard validSourceAndDestination(sourceCode,destinationCode)
@@ -41,28 +35,17 @@ class SearchTrainInteractor: PresenterToInteractorProtocol {
         }
         _sourceStationCode = sourceCode
         _destinationStationCode = destinationCode
-        URLSession.shared.perform(StationData.request(for: sourceCode),
-                                  decode: StationData.self) { (result) in
+        let request = StationData.request(for: sourceCode)
+        networkClient?.fetchTrainsFromSource(request, resultHandler: { (result) in
             switch result {
+            case .success(let trainsList):
+                self.proceesTrainListforDestinationCheck(trainsList: trainsList)
+                break
             case .failure(let error):
-                let error = error as NSError
-                switch error.code {
-                case -1009:
-                    self.presenter?.showErrorMessage(for: .noInternet)
-                    break
-                case 400...404:
-                    self.presenter?.showErrorMessage(for: .NoTrainsFound)
-                    break
-                default: break
-                }
-            case .success(let stationData):
-                if stationData.trainsList.count > 0 {
-                    self.proceesTrainListforDestinationCheck(trainsList: stationData.trainsList)
-                } else {
-                    self.presenter?.showErrorMessage(for: .NoTrainsFound)
-                }
+                self.presenter?.showErrorMessage(for: error)
+                break
             }
-        }
+        })
     }
     private func proceesTrainListforDestinationCheck(trainsList: [StationTrain]) {
         var _trainsList = trainsList
@@ -73,25 +56,20 @@ class SearchTrainInteractor: PresenterToInteractorProtocol {
                     continue
                 }
                 group.enter()
-                let request = TrainMovementsData.request(for: code, date: self.trainDate())
-                URLSession.shared.perform(request,
-                                          decode: TrainMovementsData.self) { (result) in
+                let request = TrainMovementsData.request(for: code, date: Date.TrainDate)
+                self.networkClient?.proceesTrainListforDestinationCheck(request, resultHandler: { (result) in
+                    group.leave()
                     switch result {
-                    case .failure(let error):
-                        let error = error as NSError
-                        switch error.code {
-                        case -1009:
-                            self.presenter?.showErrorMessage(for: .noInternet)
-                            break
-                        default: break
-                        }
                     case .success(let trainMovements):
                         if let firstStationMoment = self.destinationTrains(for: trainMovements)  {
                             _trainsList[index].destinationDetails = firstStationMoment
                         }
+                        break
+                    case .failure(let error):
+                        self.presenter?.showErrorMessage(for: error)
+                        break
                     }
-                    group.leave()
-                }
+                })
                 group.wait()
             }
             group.notify(queue: DispatchQueue.main) {
@@ -125,13 +103,7 @@ extension SearchTrainInteractor {
         }
         return nil
     }
-    private func trainDate() -> String {
-        let today = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        let dateString = formatter.string(from: today)
-        return dateString
-    }
+
     private func validSourceAndDestination(_ sourceCode: String, _ destinationCode: String) -> Bool {
         guard sourceCode != destinationCode,
               !sourceCode.isEmpty,

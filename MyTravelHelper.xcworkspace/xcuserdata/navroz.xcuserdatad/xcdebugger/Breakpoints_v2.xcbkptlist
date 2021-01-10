@@ -126,8 +126,8 @@
             filePath = "MyTravelHelperTests/SearchTrainPresenterTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "saveFetchedStations(stations:)"
             landmarkType = "7">
          </BreakpointContent>

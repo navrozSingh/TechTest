@@ -30,7 +30,20 @@ extension URL {
         self = urlComponents.url ?? self
     }
 }
-
+extension UIStoryboard {
+    static var mainstoryboard: UIStoryboard {
+        return UIStoryboard(name:"Main",bundle: Bundle.main)
+    }
+}
+extension Date {
+    static var TrainDate: String {
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let dateString = formatter.string(from: today)
+        return dateString
+    }
+}
 extension URLSession {
     func perform<T: Decodable>(_ request: URLRequest,
                                decode decodable: T.Type,
@@ -65,4 +78,3 @@ extension NSError {
                                      code: -1009,
                                      userInfo: [NSLocalizedDescriptionKey : "The Internet connection appears to be offline."])
 }
-

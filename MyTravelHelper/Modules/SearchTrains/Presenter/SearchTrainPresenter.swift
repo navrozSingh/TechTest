@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchTrainPresenter:ViewToPresenterProtocol {
-    var stationsList:[Station] = [Station]()
+    private var stationsList:[Station] = [Station]()
     var interactor: PresenterToInteractorProtocol?
     var router: PresenterToRouterProtocol?
     var view:PresenterToViewProtocol?
@@ -26,7 +26,6 @@ class SearchTrainPresenter:ViewToPresenterProtocol {
     func getFavouriteStation() -> StationTrain? {
         interactor?.getFavouriteStation()
     }
-
     func saveStationToFav(_ station: StationTrain) {
         interactor?.saveStationToFav(station)
     }
@@ -49,9 +48,7 @@ extension SearchTrainPresenter: InteractorToPresenterProtocol {
          else {
             self.view?.showNoTrainsFoundAlert()
         }*/
-
     }
-    
     func stationListFetched(list: [Station]) {
         self.stationsList = list
         self.view?.saveFetchedStations(stations: list)
