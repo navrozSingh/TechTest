@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
             endingLineNumber = "55"
-            landmarkName = "fetchTrainsFromSource(sourceCode:destinationCode:)"
+            landmarkName = "proceesTrainListforDestinationCheck(trainsList:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
             endingLineNumber = "62"
-            landmarkName = "fetchTrainsFromSource(sourceCode:destinationCode:)"
+            landmarkName = "proceesTrainListforDestinationCheck(trainsList:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,7 +80,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "proceesTrainListforDestinationCheck(trainsList:)"
+            landmarkName = "destinationTrains(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,9 +111,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "destinationTrains(for:)"
-            landmarkType = "7">
+            endingLineNumber = "124">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,8 +126,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
             endingLineNumber = "84"
-            landmarkName = "saveFetchedStations(stations:)"
-            landmarkType = "7">
+            landmarkName = "SearchTrainInteractorMock"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

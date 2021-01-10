@@ -25,3 +25,7 @@
 - [x] Changed view component to run on main thread.
 
 ## Lastly in ‘SearchTrainPresenterTests’ added few test 
+
+###### Newly developed tasks
+- [x] Implemented the network adapter layer.
+- [x] Wrote test cases for interactor
