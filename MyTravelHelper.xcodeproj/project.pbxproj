@@ -29,6 +29,7 @@
 		753F0851223618AD00175107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753F084F223618AD00175107 /* LaunchScreen.storyboard */; };
 		753F087122361A6500175107 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F087022361A6500175107 /* AppConstants.swift */; };
 		8CBBCE0D40B8FE266A1617DE /* Pods_MyTravelHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF635B96516F13D67ADE01AF /* Pods_MyTravelHelper.framework */; };
+		B7B4FC242858D7D900B7B7E0 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4FC232858D7D900B7B7E0 /* Client.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		753F087022361A6500175107 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		849A0A29A57A433EA5AB15FB /* Pods-MyTravelHelperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTravelHelperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTravelHelperTests/Pods-MyTravelHelperTests.release.xcconfig"; sourceTree = "<group>"; };
 		AF635B96516F13D67ADE01AF /* Pods_MyTravelHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTravelHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7B4FC232858D7D900B7B7E0 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		BD4A9E0F8C97F8AA92AAA053 /* Pods_MyTravelHelperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTravelHelperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -177,6 +179,7 @@
 		753F08682236191900175107 /* SearchTrains */ = {
 			isa = PBXGroup;
 			children = (
+				B7B4FC222858D7D900B7B7E0 /* Repository */,
 				753F086A2236196400175107 /* Entity */,
 				753F08692236196400175107 /* Interactor */,
 				753F086D2236196500175107 /* Presenter */,
@@ -248,6 +251,14 @@
 				0301C30025A3875100A5E630 /* Extension.swift */,
 			);
 			path = "App-utils";
+			sourceTree = "<group>";
+		};
+		B7B4FC222858D7D900B7B7E0 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				B7B4FC232858D7D900B7B7E0 /* Client.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,6 +430,7 @@
 				753C8FAE22362463005FF13B /* SearchTrainViewController.swift in Sources */,
 				753C8FB722367DF4005FF13B /* ProgressIndicator.swift in Sources */,
 				753C8FB522367D1C005FF13B /* AppUtils.swift in Sources */,
+				B7B4FC242858D7D900B7B7E0 /* Client.swift in Sources */,
 				753C8FA522361EC9005FF13B /* StationInfo.swift in Sources */,
 				753C8FBC223731E3005FF13B /* Reachability.swift in Sources */,
 				0301C30125A3875100A5E630 /* Extension.swift in Sources */,
